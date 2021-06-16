@@ -18,9 +18,14 @@ android {
     }
 
     kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_1_8.toString()
+        jvmTarget = "1.8"
     }
-    
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -70,13 +75,16 @@ publishing {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'androidx.core:core-ktx:1.1.0'
-    implementation 'com.jakewharton.threetenabp:threetenabp:1.2.4'
-    implementation 'androidx.activity:activity-ktx:1.2.2'
-    implementation 'com.google.android.material:material:1.3.0'
-    implementation 'io.coil-kt:coil:0.13.0'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    implementation "androidx.appcompat:appcompat:${appcompat_version}"
+    implementation "androidx.core:core-ktx:${core_ktx_version}"
+    implementation "com.jakewharton.threetenabp:threetenabp:${threetenabp_version}"
+    implementation "androidx.activity:activity-ktx:${activity_ktx_version}"
+    implementation "com.google.android.material:material:${material_version}"
+    implementation "io.coil-kt:coil:${coil_version}"
+    testImplementation "junit:junit:${junit_version}"
+    androidTestImplementation "androidx.test.ext:junit:${androidx_test_junit_version}"
+    androidTestImplementation "androidx.test.espresso:espresso-core:${androidx_test_esspresso_core_version}"
+    testImplementation ("org.threeten:threetenbp:${threetenabp_version}"){
+        exclude group:'com.jakewharton.threetenabp', module:'threetenabp'
+    }
 }
